@@ -1,14 +1,46 @@
 const express = require("express");
-const router = express.Router();
+const path = require("path");
 
-router.get("/", (req, res) => {
-  const title = 'Home';
-  res.render("home", { title });
+const router = express.Router();
+const Post = require("../models/Post");
+
+const dummyData = require("../constant/dummyData");
+/**
+ * Get
+ * Home
+ */
+router.get("/", async (req, res) => {
+  const title = "NodeJs Blog";
+
+  const posts = await Post.find();
+
+  res.render("home", { title, posts });
 });
 
+/**
+ * Get
+ * About
+ */
 router.get("/about", (req, res) => {
-  const title = 'About';
+  const title = "About";
   res.render("about", { title });
 });
+
+/**
+ * Get
+ * Post
+ */
+router.get("/post/:id", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+
+  const title = post.title;
+  res.render("post", { title, post });
+});
+
+// Insert Dummy Data in DB
+function insertPostData() {
+  Post.insertMany(dummyData);
+}
+// insertPostData();
 
 module.exports = router;
