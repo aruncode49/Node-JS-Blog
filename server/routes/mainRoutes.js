@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
   const posts = await Post.find();
 
-  res.render("home", { title, posts });
+  return res.render("home", { title, posts });
 });
 
 /**
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
  */
 router.get("/about", (req, res) => {
   const title = "About";
-  res.render("about", { title });
+  return res.render("about", { title });
 });
 
 /**
@@ -34,7 +34,7 @@ router.get("/post/:id", async (req, res) => {
   const post = await Post.findById(req.params.id);
 
   const title = post.title;
-  res.render("post", { title, post });
+  return res.render("post", { title, post });
 });
 
 // Insert Dummy Data in DB

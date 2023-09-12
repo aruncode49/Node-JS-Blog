@@ -1,0 +1,20 @@
+<%- include('./partials/header_admin') %>
+
+<div class="container">
+  <h3>Sign In</h3>
+  <form action="/login" method="post">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter username" name="username" />
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter password" name="password" />
+
+    <input type="submit" value="Login" class="btn" />
+  </form>
+</div>
+
+<p style="text-align: center">
+  if you don't have an account! <a href="/register">Register</a>
+</p>
+
+<%- include('./partials/footer') %>
